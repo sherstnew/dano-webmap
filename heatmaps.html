@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дашборд сравнения карт</title>
+    <style>
+        /* Сброс стандартных отступов браузера */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Убираем скролл самого дашборда */
+        }
+
+        /* Основной контейнер */
+        .dashboard-container {
+            display: flex; /* Располагаем элементы в ряд */
+            height: 100vh; /* Высота на весь экран */
+            width: 100%;
+            @media screen and (max-width: 600px) {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Общие стили для области карты */
+        .map-wrapper {
+            flex: 1; /* Каждая карта занимает равное пространство (50%) */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-right: 2px solid #333; /* Разделительная линия */
+            @media screen and (max-width: 600px) {
+                width: 100%;
+                flex: auto;
+            }
+        }
+
+        /* Убираем границу у правой карты */
+        .map-wrapper:last-child {
+            border-right: none;
+        }
+
+        /* Стили заголовков над картами */
+        .map-label {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* Стили самого iframe */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <div class="map-wrapper">
+            <div class="map-label">Все ДТП</div>
+            <iframe src="heatmaps/full.html" title="Full Map"></iframe>
+        </div>
+
+        <div class="map-wrapper">
+            <div class="map-label">Очищенные от выбросов</div>
+            <iframe src="heatmaps/russia.html" title="Russia Map"></iframe>
+        </div>
+
+    </div>
+
+</body>
+</html>
